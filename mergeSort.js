@@ -1,11 +1,23 @@
+let arrayData = [];
+const fs = require('fs');
+const fileName = process.argv[2];
+
+
+try {
+  const data = fs.readFileSync(fileName, 'utf8').split(' ');
+
+  for (let i = 0; i < data.length; i++) {
+    if (parseInt(data[i], 10) !== NaN) {
+      arrayData.push(parseInt(data[i], 10));
+    }
+  }
+} catch (error) {
+  console.error(error.message);
+}
+
+
 let arrayTest = [48, -2, 6, 12, 0, -4];
 let count = 0;
-
-const swap = (array, index1, index2) => {
-  let tmp = array[index1];
-  array[index1] = array[index2];
-  array[index2] = tmp;
-}
 
 
 const mergeArray = (array1, array2) => {
@@ -48,7 +60,7 @@ const mergeSort = (array) => {
   return array;
 }
 
-console.table(arrayTest)
-console.table(mergeSort(arrayTest));
+console.table(arrayData)
+console.table(mergeSort(arrayData));
 console.log("Nombre d'opérations:  " + count);
 
